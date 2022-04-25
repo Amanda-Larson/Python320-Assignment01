@@ -27,3 +27,15 @@ class TestInitStatus(TestCase):
     def test_init_status_collection(self):
         expected = {}
         self.assertEqual(expected, main.init_status_collection().database)
+
+class TestLoadUsers(TestCase):
+
+    def test_load_users(self):
+        # csv --> UserCollection
+        # users = {}
+        #
+
+class TestAddUser(TestCase):
+
+    def test_add_user(self):
+        pass

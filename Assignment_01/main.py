@@ -4,6 +4,7 @@ main driver for a simple social network project
 
 import users
 import user_status
+import users
 
 
 def init_user_collection():
@@ -18,7 +19,8 @@ def init_status_collection():
     '''
     Creates and returns a new instance of UserStatusCollection
     '''
-    pass
+    status = user_status.UserStatusCollection()
+    return status
 
 
 def load_users(filename, user_collection):
@@ -91,7 +93,13 @@ def add_user(user_id, email, user_name, user_last_name, user_collection):
       user_collection.add_user() returns False).
     - Otherwise, it returns True.
     '''
-    pass
+    try:
+        new_user = users.Users()
+        user_collection = init_user_collection()
+        if users.UserCollection.add_user(new_user):
+            return user_collection
+    except exception as e:
+       pass
 
 
 def update_user(user_id, email, user_name, user_last_name, user_collection):
