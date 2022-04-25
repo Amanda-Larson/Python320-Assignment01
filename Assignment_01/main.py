@@ -1,30 +1,32 @@
-'''
-main driver for a simple social network project
-'''
+"""
+# Title: main driver for a simple social network project
+# Who: ALarson
+# What/When: 4/24/2022 - started assignment
+#
+"""
 
-import users
 import user_status
 import users
 
 
 def init_user_collection():
-    '''
+    """
     Creates and returns a new instance of UserCollection
-    '''
+    """
     user = users.UserCollection()
     return user
 
 
 def init_status_collection():
-    '''
+    """
     Creates and returns a new instance of UserStatusCollection
-    '''
+    """
     status = user_status.UserStatusCollection()
     return status
 
 
 def load_users(filename, user_collection):
-    '''
+    """
     Opens a CSV file with user data and
     adds it to an existing instance of
     UserCollection
@@ -36,12 +38,12 @@ def load_users(filename, user_collection):
     - Returns False if there are any errors
     (such as empty fields in the source CSV file)
     - Otherwise, it returns True.
-    '''
+    """
     pass
 
 
 def save_users(filename, user_collection):
-    '''
+    """
     Saves all users in user_collection into
     a CSV file
 
@@ -51,12 +53,12 @@ def save_users(filename, user_collection):
     - Returns False if there are any errors
     (such as an invalid filename).
     - Otherwise, it returns True.
-    '''
+    """
     pass
 
 
 def load_status_updates(filename, status_collection):
-    '''
+    """
     Opens a CSV file with status data and adds it to an existing
     instance of UserStatusCollection
 
@@ -66,24 +68,24 @@ def load_status_updates(filename, status_collection):
     - Returns False if there are any errors(such as empty fields in the
       source CSV file)
     - Otherwise, it returns True.
-    '''
+    """
     pass
 
 
 def save_status_updates(filename, status_collection):
-    '''
+    """
     Saves all statuses in status_collection into a CSV file
 
     Requirements:
     - If there is an existing file, it will overwrite it.
     - Returns False if there are any errors(such an invalid filename).
     - Otherwise, it returns True.
-    '''
+    """
     pass
 
 
 def add_user(user_id, email, user_name, user_last_name, user_collection):
-    '''
+    """
     Creates a new instance of User and stores it in user_collection
     (which is an instance of UserCollection)
 
@@ -92,24 +94,24 @@ def add_user(user_id, email, user_name, user_last_name, user_collection):
     - Returns False if there are any errors (for example, if
       user_collection.add_user() returns False).
     - Otherwise, it returns True.
-    '''
+    """
     try:
         new_user = users.Users()
         user_collection = init_user_collection()
         if users.UserCollection.add_user(new_user):
             return user_collection
     except exception as e:
-       pass
+        return False
 
 
 def update_user(user_id, email, user_name, user_last_name, user_collection):
-    '''
+    """
     Updates the values of an existing user
 
     Requirements:
-    - Returns False if there any errors.
+    - Returns False if there are any errors.
     - Otherwise, it returns True.
-    '''
+    """
     pass
 
 

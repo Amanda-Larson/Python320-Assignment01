@@ -15,7 +15,6 @@ from users import UserCollection
 class TestUsers(TestCase):
     """Testing Users"""
 
-
     def setUp(self) -> None:
         user_id = 202
         email = 'email@email.com'
@@ -79,6 +78,5 @@ class TestUsers(TestCase):
         self.search_user = MagicMock()
         user_id = 202
         self.search_user(user_id)
+
         self.search_user.assert_called()
-
-

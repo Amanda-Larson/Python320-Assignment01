@@ -47,18 +47,18 @@ class UserCollection():
         return True
 
     def delete_user(self, user_id):
-        '''
+        """
         Deletes an existing user
-        '''
+        """
         if user_id not in self.database:
             return False
         del self.database[user_id]
         return True
 
     def search_user(self, user_id):
-        '''
+        """
         Searches for user data
-        '''
+        """
         if user_id not in self.database:
             return Users(None, None, None, None)
         return self.database[user_id]
