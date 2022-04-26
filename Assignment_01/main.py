@@ -2,7 +2,6 @@
 # Title: main driver for a simple social network project
 # Who: ALarson
 # What/When: 4/24/2022 - started assignment
-#
 """
 
 import user_status
@@ -95,13 +94,7 @@ def add_user(user_id, email, user_name, user_last_name, user_collection):
       user_collection.add_user() returns False).
     - Otherwise, it returns True.
     """
-    try:
-        new_user = users.Users()
-        user_collection = init_user_collection()
-        if users.UserCollection.add_user(new_user):
-            return user_collection
-    except exception as e:
-        return False
+    user_collection.add_user(user_id, email, user_name, user_last_name)
 
 
 def update_user(user_id, email, user_name, user_last_name, user_collection):
@@ -112,34 +105,34 @@ def update_user(user_id, email, user_name, user_last_name, user_collection):
     - Returns False if there are any errors.
     - Otherwise, it returns True.
     """
-    pass
+    user_collection.update_user(user_id, email, user_name, user_last_name)
 
 
 def delete_user(user_id, user_collection):
-    '''
+    """
     Deletes a user from user_collection.
 
     Requirements:
     - Returns False if there are any errors (such as user_id not found)
     - Otherwise, it returns True.
-    '''
-    pass
+    """
+    user_collection.delete_user(user_id)
 
 
 def search_user(user_id, user_collection):
-    '''
+    """
     Searches for a user in user_collection(which is an instance of
     UserCollection).
 
     Requirements:
     - If the user is found, returns the corresponding User instance.
     - Otherwise, it returns None.
-    '''
+    """
     pass
 
 
 def add_status(user_id, status_id, status_text, status_collection):
-    '''
+    """
     Creates a new instance of UserStatus and stores it in
     user_collection(which is an instance of UserStatusCollection)
 
@@ -148,39 +141,39 @@ def add_status(user_id, status_id, status_text, status_collection):
     - Returns False if there are any errors (for example, if
       user_collection.add_status() returns False).
     - Otherwise, it returns True.
-    '''
+    """
     pass
 
 
 def update_status(status_id, user_id, status_text, status_collection):
-    '''
+    """
     Updates the values of an existing status_id
 
     Requirements:
     - Returns False if there any errors.
     - Otherwise, it returns True.
-    '''
+    """
     pass
 
 
 def delete_status(status_id, status_collection):
-    '''
+    """
     Deletes a status_id from user_collection.
 
     Requirements:
     - Returns False if there are any errors (such as status_id not found)
     - Otherwise, it returns True.
-    '''
+    """
     pass
 
 
 def search_status(status_id, status_collection):
-    '''
+    """
     Searches for a status in status_collection
 
     Requirements:
     - If the status is found, returns the corresponding
     UserStatus instance.
     - Otherwise, it returns None.
-    '''
+    """
     pass
