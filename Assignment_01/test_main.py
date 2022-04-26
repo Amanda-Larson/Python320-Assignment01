@@ -5,29 +5,40 @@
 #
 
 
-from users import UserCollection
-import main
 from unittest import TestCase
+import main
 
 
-#main tests
+
+# main tests
 class TestInitUser(TestCase):
+    """This will test the user collection __init__ and that it
+    creates an empty database/dictionary"""
 
     def test_init_user_collection(self):
-        #test that it was instantiated?
-        #expect an instantiated object which has a database/empty dictionary
+        """This will test the user collection __init__ and that it
+        creates an empty database/dictionary
+        """
+        # test that it was instantiated?
+        # expect an instantiated object which has a database/empty dictionary
         expected = {}
         # actual = main.init_user_collection()
         # message = 'test'
         self.assertEqual(expected, main.init_user_collection().database)
         # self.assertIsInstance(expected, actual, message)
 
+
 class TestInitStatus(TestCase):
+    """
+    This will test the status collection __init__ and that it creates an
+    empty database/dictionary
+    """
 
     def test_init_status_collection(self):
+        """This will test the status collection __init__ and that it creates
+        an empty database/dictionary"""
         expected = {}
         self.assertEqual(expected, main.init_status_collection().database)
-
 
 
 class TestMainUserFunctions(TestCase):
@@ -45,7 +56,6 @@ class TestMainUserFunctions(TestCase):
         self.update_user = main.update_user(user_id, email, user_name, user_last_name)
         self.delete_user = main.delete_user(user_id)
         self.search_user = main.search_user(user_id)
-
 
     def test_load_users(self):
         """This will test loading users"""
@@ -68,6 +78,7 @@ class TestMainUserFunctions(TestCase):
     def tearDown(self) -> None:
         pass
 
+
 class TestMainStatusFunctions(TestCase):
     """This class will test the functions re: status in main.py"""
 
@@ -82,7 +93,6 @@ class TestMainStatusFunctions(TestCase):
         self.update_status = main.update_status(status_id, user_id, status_test)
         self.delete_status = main.delete_status(status_id)
         self.search_status = main.search_status(status_id)
-
 
     def test_load_status_updates(self):
         """This will test loading status updates from file"""
