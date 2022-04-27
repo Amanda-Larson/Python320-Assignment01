@@ -6,6 +6,7 @@
 
 import user_status
 import users
+import csv
 
 
 def init_user_collection():
@@ -38,7 +39,11 @@ def load_users(filename, user_collection):
     (such as empty fields in the source CSV file)
     - Otherwise, it returns True.
     """
-    pass
+    try:
+        with open(filename, newline='', encoding="UTF-8") as file:
+            user_collection.database = csv.DictReader(file)
+    except FileNotFoundError:
+        print('File not found')
 
 
 def save_users(filename, user_collection):
@@ -53,7 +58,17 @@ def save_users(filename, user_collection):
     (such as an invalid filename).
     - Otherwise, it returns True.
     """
-    pass
+    header = ['USER_ID', 'EMAIL', 'NAME', 'LASTNAME']
+    try:
+        with open(filename, mode='a', newline='', encoding="UTF-8") as file:
+            writer = csv.DictWriter(file, delimiter=',', fieldnames=header)
+            for key, values in user_collection().database:
+                row = {key: values}
+                writer.writerow(row)
+                return True
+    except FileNotFoundError:
+        print('File not found')
+        return False
 
 
 def load_status_updates(filename, status_collection):
@@ -68,7 +83,6 @@ def load_status_updates(filename, status_collection):
       source CSV file)
     - Otherwise, it returns True.
     """
-    pass
 
 
 def save_status_updates(filename, status_collection):
@@ -80,7 +94,6 @@ def save_status_updates(filename, status_collection):
     - Returns False if there are any errors(such an invalid filename).
     - Otherwise, it returns True.
     """
-    pass
 
 
 def add_user(user_id, email, user_name, user_last_name, user_collection):
@@ -128,7 +141,6 @@ def search_user(user_id, user_collection):
     - If the user is found, returns the corresponding User instance.
     - Otherwise, it returns None.
     """
-    pass
 
 
 def add_status(user_id, status_id, status_text, status_collection):
@@ -142,7 +154,6 @@ def add_status(user_id, status_id, status_text, status_collection):
       user_collection.add_status() returns False).
     - Otherwise, it returns True.
     """
-    pass
 
 
 def update_status(status_id, user_id, status_text, status_collection):
@@ -164,7 +175,7 @@ def delete_status(status_id, status_collection):
     - Returns False if there are any errors (such as status_id not found)
     - Otherwise, it returns True.
     """
-    pass
+
 
 
 def search_status(status_id, status_collection):
@@ -176,4 +187,4 @@ def search_status(status_id, status_collection):
     UserStatus instance.
     - Otherwise, it returns None.
     """
-    pass
+

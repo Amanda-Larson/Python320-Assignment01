@@ -1,13 +1,14 @@
-# header
-# title
-# date
-# name
+"""
+# Title: test_main.py
+# What/When: started main testing 04/23/2022
+# ALarson
 #
-
+"""
 
 from unittest import TestCase
 import main
-
+import users as u
+import user_status as us
 
 
 # main tests
@@ -49,13 +50,15 @@ class TestMainUserFunctions(TestCase):
         email = 'email@email.com'
         user_name = 'Amanda'
         user_last_name = 'Larson'
+        filename = 'accounts.csv'
 
-        self.load_users = main.load_users(filename='accounts.csv')
-        self.save_users = main.save_users(filename='accounts.csv')
-        self.add_user = main.add_user(user_id, email, user_id, user_last_name)
-        self.update_user = main.update_user(user_id, email, user_name, user_last_name)
-        self.delete_user = main.delete_user(user_id)
-        self.search_user = main.search_user(user_id)
+        self.user_db = u.UserCollection().database
+        self.load_users = main.load_users(filename, self.user_db)
+        self.save_users = main.save_users(filename, self.user_db)
+        self.add_user = main.add_user(user_id, email, user_id, user_last_name, self.user_db)
+        self.update_user = main.update_user(user_id, email, user_name, user_last_name, self.user_db)
+        self.delete_user = main.delete_user(user_id, self.user_db)
+        self.search_user = main.search_user(user_id, self.user_db)
 
     def test_load_users(self):
         """This will test loading users"""
@@ -65,6 +68,13 @@ class TestMainUserFunctions(TestCase):
 
     def test_add_users(self):
         """This will test adding a new user"""
+        user_id = 225
+        email = 'email@email.com'
+        user_name = 'Amanda'
+        user_last_name = 'Larson'
+
+        new_user = self.add_user(user_id, email, user_name, user_last_name, self.user_db)
+        self.assertIsInstance(new_user, object)
 
     def test_update_users(self):
         """This will test updating a user"""
@@ -86,13 +96,15 @@ class TestMainStatusFunctions(TestCase):
         status_test = 'Good morning, Starshine!'
         user_id = 225
         status_id = 100
+        filename = 'status_updates.csv'
+        status_db = us.UserStatusCollection().database
 
-        self.load_status_updates = main.load_status_updates(filename='status_updates.csv')
-        self.save_status_updates = main.save_status_updates(filename='status_updates.csv')
-        self.add_status = main.add_status(user_id, status_id, status_test)
-        self.update_status = main.update_status(status_id, user_id, status_test)
-        self.delete_status = main.delete_status(status_id)
-        self.search_status = main.search_status(status_id)
+        self.load_status_updates = main.load_status_updates(filename, status_db)
+        self.save_status_updates = main.save_status_updates(filename, status_db)
+        self.add_status = main.add_status(user_id, status_id, status_test, status_db)
+        self.update_status = main.update_status(status_id, user_id, status_test, status_db)
+        self.delete_status = main.delete_status(status_id, status_db)
+        self.search_status = main.search_status(status_id, status_db)
 
     def test_load_status_updates(self):
         """This will test loading status updates from file"""
